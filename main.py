@@ -109,7 +109,7 @@ class Dino():
             self.dino_status['run'] = False
             self.dino_status['duck'] = False
 
-        elif output[2] > 0.6 and not self.dino_status['jump']:  # DUCK
+        elif output[2] > 0.4 and not self.dino_status['jump']:  # DUCK
             self.dino_status['duck'] = True
             self.dino_status['jump'] = False
             self.dino_status['run'] = False
@@ -175,11 +175,11 @@ class Bird(Obstacle):
         self.type = 0
         super().__init__(image, self.type, start, 275)
         self.height = image[self.type].get_rect().height
-        self.which_bird = random.randint(0, 2)
+        self.which_bird = random.randint(0, 1)
         if self.which_bird == 0:
-            self.rect.y = 260
+            self.rect.y = 220
         else:
-            self.rect.y = 220    
+            self.rect.y = 260    
         self.index = 0
 
     def draw(self, win):
@@ -195,7 +195,7 @@ def random_obstacles(obstacles):
             obstacles.append(SmallCactus(SMALL_CACTUS, SCREEN_WIDTH))
             obstacles.append(Bird(BIRD, SCREEN_WIDTH + GAP))
         elif random.randint(0, 2) == 1:
-            obstacles.append(LargeCactus(LARGE_CACTUS, SCREEN_WIDTH))
+            obstacles.append(Bird(BIRD, SCREEN_WIDTH))
             obstacles.append(SmallCactus(SMALL_CACTUS, SCREEN_WIDTH + GAP))
         elif random.randint(0, 2) == 2:
             obstacles.append(Bird(BIRD, SCREEN_WIDTH))
